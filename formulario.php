@@ -167,7 +167,7 @@ include "conexao.php"
 
                     <div class="d-flex justify-content-end gap-2">
                         <input type="reset" class="btn btn-secondary px-4" name="Limpar" value="Cancelar">
-                        <input type="submit" class="btn btn-primary px-4 fw-bold" name="OK" value="Confirmar">
+                        <input type="submit" class="btn btn-primary px-4 fw-bold" name="ok" value="Confirmar">
                     </div>
 
                 </form>

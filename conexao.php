@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "cadastro";
+$dbname = "cinema";
 
 // Conectar ao MySQL
 $conn = mysqli_connect($servername, $username, $password);
@@ -13,7 +13,7 @@ if (!$conn) {
 }
 
 // Criar o banco de dados caso não exista
-$sql = "CREATE DATABASE IF NOT EXISTS cadastro";
+$sql = "CREATE DATABASE IF NOT EXISTS cinema";
 mysqli_query($conn, $sql);
 
 mysqli_select_db($conn, $dbname);

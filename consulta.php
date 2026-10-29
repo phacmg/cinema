@@ -18,6 +18,8 @@ if (isset($_GET['ok'])) {
 
     $sql = 'INSERT INTO filmes (titulo, duracao, sinopse, genero, classificacao_indicativa, opcao_audio, status_filme, diretor, ator_principal, estudio, ano_lancamento, avaliacao) 
             VALUES ("'.$titulo.'", "'.$duracao.'", "'.$sinopse.'", "'.$genero.'", "'.$classificacao.'", "'.$opcaudio.'", "'.$status.'", "'.$diretor.'", "'.$atorprincip.'", "'.$estudio.'", "'.$anolanc.'", "'.$avaliacao.'")';
+    
+
 
     if (!mysqli_query($conn, $sql)) {
         echo "<script>alert('Erro ao guardar na base de dados: " . mysqli_error($conn) . "');</script>";
@@ -183,19 +185,23 @@ if (isset($_GET['ok'])) {
                                 while($row = $result->fetch_assoc()) {
                                   $classeDaLinha = ($indice % 2 == 0) ? 'linha-creme-claro' : 'linha-creme-escuro';
                                   
-                                  echo "<tr class='{$classeDaLinha}'>".
-                                  "<td>" . $row["id"] . "</td>".
-                                  "<td>" . $row["titulo"] . "</td>".
-                                  "<td>" . $row["autor"] . "</td>".
-                                  "<td>" . $row["ano"] . "</td>".
-                                  "<td>" . $row["editora"] . "</td>".
-                                  "<td>" . $row["paginas"] . "</td>".
-                                  "<td>" . $row["isbn"] . "</td>".
-                                  "<td>" . $row["genero"] . "</td>".
-                                  "<td>" . $row["classificacao_etaria"] . "</td>".
-                                  "<td><a href='editar.php?id={$row['id']}' class='btn btn-sm btn-outline-primary fw-bold'>Editar</a></td>".
-                                  "<td><a href='deletar.php?id={$row['id']}' class='btn btn-sm btn-outline-danger fw-bold' onclick='return confirm(\"Tem certeza que deseja deletar este livro?\");'>Deletar</a></td>".
-                                  "</tr>"; 
+                                  echo "<tr class='{$classeDaLinha}'>" .
+                                  "<td>" . $row["id"] . "</td>" .
+                                  "<td>" . $row["titulo"] . "</td>" .
+                                  "<td>" . $row["duracao"] . "</td>" .
+                                  "<td>" . $row["sinopse"] . "</td>" .
+                                  "<td>" . $row["genero"] . "</td>" .
+                                  "<td>" . $row["classificacao_indicativa"] . "</td>" .
+                                  "<td>" . $row["opcao_audio"] . "</td>" .
+                                  "<td>" . $row["status_filme"] . "</td>" .
+                                  "<td>" . $row["diretor"] . "</td>" .
+                                  "<td>" . $row["ator_principal"] . "</td>" .
+                                  "<td>" . $row["estudio"] . "</td>" .
+                                  "<td>" . $row["ano_lancamento"] . "</td>" .
+                                  "<td>" . $row["avaliacao"] . "</td>" .
+                                  "<td><a href='editar.php?id={$row['id']}' class='btn btn-sm btn-outline-primary fw-bold'>Editar</a></td>" .
+                                  "<td><a href='deletar.php?id={$row['id']}' class='btn btn-sm btn-outline-danger fw-bold' onclick='return confirm(\"Tem certeza que deseja deletar este filme?\");'>Deletar</a></td>" .
+                               "</tr>";
 
                                   $indice++;
                               }
