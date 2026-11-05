@@ -1,26 +1,24 @@
 <?php
 include "conexao.php"; 
 
-if (isset($_GET['ok'])) {
+if (isset($_GET['OK']) || isset($_GET['ok'])) {
 
-    $titulo = mb_strtoupper($_GET['filme'], 'UTF-8');
-    $duracao = mb_strtoupper($_GET['duracao'], 'UTF-8');
-    $sinopse = $_GET['sinopse'];
-    $genero = mb_strtoupper($_GET['genero'], 'UTF-8');
-    $classificacao = $_GET['classificacao'];
-    $opcaudio = $_GET['opcaudio'];
-    $status = $_GET['statusfilme'];
-    $diretor = $_GET['diretor'];
-    $atorprincip = $_GET['atorprincip'];
-    $estudio = $_GET['estudio'];
-    $anolanc = $_GET['anolanc'];
-    $avaliacao = $_GET['avaliacao'];
+    $titulo        = mb_strtoupper($_GET['filme'] ?? '', 'UTF-8');
+    $duracao       = mb_strtoupper($_GET['duracao'] ?? '', 'UTF-8');
+    $sinopse       = $_GET['sinopse'] ?? '';
+    $genero        = mb_strtoupper($_GET['genero'] ?? '', 'UTF-8');
+    $classificacao = $_GET['classificacao'] ?? '';
+    $opcaudio      = $_GET['opcaudio'] ?? '';
+    $status        = $_GET['statusfilme'] ?? '';
+    $diretor       = $_GET['diretor'] ?? '';
+    $atorprincip   = $_GET['atorprincip'] ?? '';
+    $estudio       = $_GET['estudio'] ?? '';
+    $anolanc       = !empty($_GET['anolanc']) ? (int)$_GET['anolanc'] : "NULL";
+    $avaliacao     = !empty($_GET['avaliacao']) ? (float)$_GET['avaliacao'] : "NULL";
 
-    $sql = 'INSERT INTO filmes (titulo, duracao, sinopse, genero, classificacao_indicativa, opcao_audio, status_filme, diretor, ator_principal, estudio, ano_lancamento, avaliacao) 
-            VALUES ("'.$titulo.'", "'.$duracao.'", "'.$sinopse.'", "'.$genero.'", "'.$classificacao.'", "'.$opcaudio.'", "'.$status.'", "'.$diretor.'", "'.$atorprincip.'", "'.$estudio.'", "'.$anolanc.'", "'.$avaliacao.'")';
+    $sql = "INSERT INTO filmes (titulo, duracao, sinopse, genero, classificacao_indicativa, opcao_audio, status_filme, diretor, ator_principal, estudio, ano_lancamento, avaliacao) 
+            VALUES ('$titulo', '$duracao', '$sinopse', '$genero', '$classificacao', '$opcaudio', '$status', '$diretor', '$atorprincip', '$estudio', $anolanc, $avaliacao)";
     
-
-
     if (!mysqli_query($conn, $sql)) {
         echo "<script>alert('Erro ao guardar na base de dados: " . mysqli_error($conn) . "');</script>";
     }
@@ -42,31 +40,30 @@ if (isset($_GET['ok'])) {
             box-sizing: border-box;
         }
 
-        /* Estilização da tabela de livros */
-        .tabela-acervo-livros {
+        .tabela-consulta-filmes {
             width: 100%;
             border-collapse: collapse;
             background-color: #fffcf5;
-            color: #2c1a14;
-            border-radius: 8px;
+            border-radius: 0 !important;
             overflow: hidden;
-            border: 1px solid #d4a373;
+            border: 1px solid #0d6efd;
         }
 
-        .tabela-acervo-livros td, .tabela-acervo-livros th {
-            border: 1px solid #e6ccb2;
+        .tabela-consulta-filmes td, 
+        .tabela-consulta-filmes th {
+            border: 1px solid #b6d4fe;
             text-align: center;
             padding: 10px;
             font-size: 14px;  
+            color: #2c1a14 !important;
         }
 
-        /* Cabeçalho principal da tabela */
-        .cabecalho-terracota {
-            background-color: #b0533c !important;
+        .cabecalho-terracota td, 
+        .cabecalho-terracota th {
+            background-color: #0d6efd !important;
             color: #ffffff !important;
         }
 
-        /* Alternância de cores das linhas */
         .linha-creme-claro {
             background-color: #fdf8ed;
         }
@@ -75,14 +72,13 @@ if (isset($_GET['ok'])) {
             background-color: #f7eee1;
         }
 
-        /* Imagem de fundo com efeito blur */
         .imagem-fundo-com-blur {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-image: url('livros.png'); 
+            background-image: url('cinema.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -91,8 +87,7 @@ if (isset($_GET['ok'])) {
             z-index: -2;                        
         }
 
-        /* Overlay escuro */
-        .camada-fundo-escuro {
+        .camada-fundo {
             position: fixed;
             top: 0;
             left: 0;
@@ -102,7 +97,6 @@ if (isset($_GET['ok'])) {
             z-index: -1;
         }
 
-        /* Cartão com efeito Glassmorphism */
         .cartao-vidro-fosco {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);    
@@ -111,11 +105,10 @@ if (isset($_GET['ok'])) {
             border-radius: 24px !important;
         }
 
-        /* Botão para registrar novo formulário */
-        .botao-transparente-secundario {
-            background: rgba(255, 255, 255, 0.2);              
-            border: 1px solid rgba(255, 255, 255, 0.4);         
-            color: white;                                        
+        .botao-transparente {
+            color: #212529 !important;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.2);                                     
             font-weight: 600;                                      
             padding: 10px 25px;
             text-decoration: none;
@@ -123,9 +116,9 @@ if (isset($_GET['ok'])) {
             transition: 0.3s;
         }
 
-        .botao-transparente-secundario:hover {
-            background: rgba(255, 255, 255, 0.35);
-            color: white;
+        .botao-transparente:hover {
+            background: rgba(255, 255, 255, 0.6);
+            color: #000000 !important;
         }
 
         .fonte-titulo-sistema {
@@ -141,7 +134,7 @@ if (isset($_GET['ok'])) {
 <body>
 
     <div class="imagem-fundo-com-blur"></div> 
-    <div class="camada-fundo-escuro"></div> 
+    <div class="camada-fundo"></div> 
     
     <div class="position-relative z-1 min-vh-100 d-flex flex-column justify-content-between text-white"> 
 
@@ -167,19 +160,23 @@ if (isset($_GET['ok'])) {
 
                             if ($result && mysqli_num_rows($result) > 0) {
 
-                              echo "<table class='tabela-acervo-livros' id='tabelaConsultaLivros'>";
+                              echo "<table class='tabela-consulta-filmes' id='tabelaConsultaFilmes'>";
                               echo "<tr class='cabecalho-terracota'>
-                                  <td><strong>ID</strong></td>
-                                  <td><strong>Título</strong></td>
-                                  <td><strong>Autor</strong></td>
-                                  <td><strong>Ano</strong></td>
-                                  <td><strong>Editora</strong></td>
-                                  <td><strong>Paginas</strong></td>
-                                  <td><strong>ISBN</strong></td>
-                                  <td><strong>Genero</strong></td>
-                                  <td><strong>Classificação Etária</strong></td>
-                                  <td colspan='2'><strong>Ações</strong></td>
-                                </tr>";
+                                        <td><strong>ID</strong></td>
+                                        <td><strong>Título</strong></td>
+                                        <td><strong>Duração</strong></td>
+                                        <td><strong>Sinopse</strong></td>
+                                        <td><strong>Gênero</strong></td>
+                                        <td><strong>Classificação</strong></td>
+                                        <td><strong>Áudio</strong></td>
+                                        <td><strong>Status</strong></td>
+                                        <td><strong>Diretor</strong></td>
+                                        <td><strong>Ator Principal</strong></td>
+                                        <td><strong>Estúdio</strong></td>
+                                        <td><strong>Ano</strong></td>
+                                        <td><strong>Avaliação</strong></td>
+                                        <td colspan='2'><strong>Ações</strong></td>
+                                    </tr>";
                                 
                                 $indice = 0;
                                 while($row = $result->fetch_assoc()) {
@@ -217,7 +214,7 @@ if (isset($_GET['ok'])) {
                         </div>
 
                         <div class="mt-3">
-                            <a href="formulario.php" class="botao-transparente-secundario rounded-3">Registrar Novo Filme</a>
+                            <a href="formulario.php" class="botao-transparente rounded-3">Registrar Novo Filme</a>
                         </div>
 
                     </div>
@@ -232,7 +229,7 @@ if (isset($_GET['ok'])) {
         function filtrarTabela() {
             const input = document.getElementById('campoPesquisa');
             const termoBusca = input.value.toUpperCase();
-            const tabela = document.getElementById('tabelaConsultaLivros');
+            const tabela = document.getElementById('tabelaConsultaFilmes');
             
             if (!tabela) return;
 
