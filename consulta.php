@@ -22,6 +22,7 @@ if (isset($_GET['OK']) || isset($_GET['ok'])) {
     if (!mysqli_query($conn, $sql)) {
         echo "<script>alert('Erro ao guardar na base de dados: " . mysqli_error($conn) . "');</script>";
     }
+
 }
 ?>
 
@@ -153,7 +154,7 @@ if (isset($_GET['OK']) || isset($_GET['ok'])) {
 
                     <div class="p-4 p-md-4 cartao-vidro-fosco shadow-lg text-center">
                         <h3 class="text-center text-white mb-3 fw-bold">Filmes Catalogados</h3>
-                        <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+                    <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
                             <?php
                             $sql = "SELECT id, titulo, duracao, sinopse, genero, classificacao_indicativa, opcao_audio, status_filme, diretor, ator_principal, estudio, ano_lancamento, avaliacao FROM filmes ORDER BY titulo ASC";
                             $result = mysqli_query($conn, $sql);
@@ -197,7 +198,7 @@ if (isset($_GET['OK']) || isset($_GET['ok'])) {
                                   "<td>" . $row["ano_lancamento"] . "</td>" .
                                   "<td>" . $row["avaliacao"] . "</td>" .
                                   "<td><a href='editar.php?id={$row['id']}' class='btn btn-sm btn-outline-primary fw-bold'>Editar</a></td>" .
-                                  "<td><a href='deletar.php?id={$row['id']}' class='btn btn-sm btn-outline-danger fw-bold' onclick='return confirm(\"Tem certeza que deseja deletar este filme?\");'>Deletar</a></td>" .
+                                  "<td><a href='delete.php?id={$row['id']}' class='btn btn-sm btn-outline-danger fw-bold' onclick='return confirm(\"Tem certeza que deseja deletar este filme?\");'>Deletar</a></td>" .
                                "</tr>";
 
                                   $indice++;
@@ -211,18 +212,18 @@ if (isset($_GET['OK']) || isset($_GET['ok'])) {
 
                             $conn->close();
                             ?>
-                        </div>
+                    </div>
 
-                        <div class="mt-3">
+                    <div class="mt-3">
                             <a href="formulario.php" class="botao-transparente rounded-3">Registrar Novo Filme</a>
-                        </div>
-
                     </div>
 
                 </div>
+
             </div>
-        </main>
-        <div></div>
+        </div>
+    </main>
+    <div></div>
     </div>
 
     <script>

@@ -72,7 +72,7 @@ include "conexao.php"
 
                     <div class="mb-3">
                         <label for="sinopse" class="form-label fw-bold">Sinopse:</label>
-                        <textarea id="sinopse" class="form-control glass-input" name="sinopse" rows="4"
+                        <textarea id="sinopse" class="form-control glass-input" name="sinopse" rows="2"
                             onkeyup="this.value = this.value.toLowerCase()"></textarea>
                     </div>
 
@@ -138,7 +138,7 @@ include "conexao.php"
 
                     <div class="row mb-3">
                         <div class="col-md-4 mb-2">
-                            <label for="diretor" class="form-label fw-bold">Diretor:</label>
+                            <label for="diretor" class="form-label fw-bold">Diretor(a):</label>
                             <input type="text" id="diretor" class="form-control glass-input" name="diretor">
                         </div>
                         <div class="col-md-4 mb-2">
