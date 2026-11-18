@@ -94,7 +94,6 @@ include "conexao.php"
                                 <option value="guerra">Guerra</option>
                                 <option value="misterio">Mistério</option>
                                 <option value="romance">Romance</option>
-                                <option value="superheroi">Super-herói</option>
                                 <option value="suspense">Suspense (Thriller)</option>
                                 <option value="terror">Terror</option>
                             </select>
